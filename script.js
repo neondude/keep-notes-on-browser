@@ -30,10 +30,10 @@ function addNoteToDOM(id, content = '', isArchived = false, colNum) {
 
     textarea.addEventListener('focus', () => noteCard.classList.add('show-buttons'));
     textarea.addEventListener('blur', (event) => {
-        // Delay hiding to check if the new focus is on a button
-        setTimeout(() => {
+        // Check if the new focused element is within the note card
+        if (!noteCard.contains(event.relatedTarget)) {
             noteCard.classList.remove('show-buttons');
-        }, 500); // Delay is short to allow for focus change to be detected
+        }
     });
 
     // Ensure buttons don't hide if they're clicked
