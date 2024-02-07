@@ -86,8 +86,14 @@ document.getElementById('addNote').addEventListener('click', function () {
 window.addEventListener('storage', function (event) {
     if (event.key === notesKey) {
         notes = JSON.parse(event.newValue) || [];
-        document.getElementById('notesContainer').innerHTML = ''; // Clear existing notes
-        document.getElementById('archivedNotesContainer').innerHTML = ''; // Clear archived notes
+        document.getElementById('notesContainer').innerHTML = `
+            <div class="col-md-4 mb-4"></div>
+            <div class="col-md-4 mb-4"></div>
+            <div class="col-md-4 mb-4"></div>`; // Clear existing notes
+        document.getElementById('archivedNotesContainer').innerHTML = `
+            <div class="col-md-4 mb-4"></div>
+            <div class="col-md-4 mb-4"></div>
+            <div class="col-md-4 mb-4"></div>`; // Clear archived notes
         renderNotes(notes);
     }
 });
