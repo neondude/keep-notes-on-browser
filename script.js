@@ -9,15 +9,18 @@ function addNoteToDOM(id, content = '', isArchived = false, colNum) {
     const container = isArchived ? document.getElementById('archivedNotesContainer') : document.getElementById('notesContainer');
     const theCol = container.getElementsByClassName('col-md-4')[colNum];
     const cardHtml = `
-            <div class="col my-2 note-card" data-id="${id}">
-                <div class="card">
-                    <div class="card-body" >
-                        <textarea class="form-control autogrow" placeholder="Take a note..." oninput="autoGrow(this); updateNoteContent(${id}, this.value);"  ${isArchived ? 'disabled' : ''}>${content}</textarea>
-                        <button class="btn btn-outline-danger mt-2" onclick="deleteNote(${id})"><i class="bi bi-trash"></i></button>
-                        ${!isArchived ? `<button class="btn btn-outline-warning mt-2" onclick="archiveNote(${id})"><i class="bi bi-archive"></i></button>` : ''}
-                    </div>
+    <div class="col my-2 note-card" data-id="${id}">
+        <div class="card">
+            <div class="card-body">
+                <textarea class="form-control autogrow" placeholder="Take a note..." oninput="autoGrow(this); updateNoteContent(${id}, this.value);" ${isArchived ? 'disabled' : ''}>${content}</textarea>
+                <div class="text-end">
+                    <button class="btn btn-outline-danger mt-2" onclick="deleteNote(${id})"><i class="bi bi-trash"></i></button>
+                    ${!isArchived ? `<button class="btn btn-outline-warning mt-2" onclick="archiveNote(${id})"><i class="bi bi-archive"></i></button>` : ''}
                 </div>
-            </div>`;
+            </div>
+        </div>
+    </div>`;
+
     // add cardHtml as child of theCol
     theCol.insertAdjacentHTML('beforeend', cardHtml);
 
